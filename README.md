@@ -3,6 +3,26 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7239205.svg)](https://doi.org/10.5281/zenodo.7239205)
 
 SSHash
+
+## BQF paper experiment note
+
+preprocessing data step : (fastq.gz to simplitigs)
+
+``` bash
+~/bcalm/build/bcalm -in ~/data/AHX_ACXIOSF_6_1_C2FGHACXX.IND4_clean.fastq.gz -kmer-size 31 -abundance-min 2 -nb-cores 4 -all-abundance-counts
+
+~/UST/ust -k 31 -i ~/AHX_ACXIOSF_6_1_C2FGHACXX.IND4_clean.fastq.unitigs.fa -a 1
+
+gzip ~/AHX_ACXIOSF_6_1_C2FGHACXX.IND4_clean.fastq.unitigs.fa.ust.fa
+```
+
+Tools used : 
+ + [Bcalm](https://github.com/GATB/bcalm) (version 2.2.3)
+ + [UST](https://github.com/jermp/UST) (commit b3d0710)
+
+Then `sshash/src/sshash.cpp` (main executable) has been modified so that when compiled the main tool `sshash` runs experiments on sea-water34M dataset (first available in [wiki](https://github.com/vicLeva/bqf/wiki/Experiments-details-and-protocol-for-BQF-paper-results), dataset has to be downloaded first).
+
+
 ======
 
 This is a compressed dictionary data structure for k-mers
